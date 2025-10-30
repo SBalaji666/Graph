@@ -1,6 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
+const { ApolloServerPluginLandingPageLocalDefault } = require('@apollo/server/plugin/landingPage/default');
 const cors = require('cors');
 const helmet = require('helmet');
 
@@ -37,7 +38,13 @@ async function initializeApolloServer() {
     apolloServer = new ApolloServer({
       typeDefs,
       resolvers,
-      introspection: true, // Enable GraphQL playground in production
+      introspection: true,
+      plugins: [
+        ApolloServerPluginLandingPageLocalDefault({
+          embed: true,
+          includeCookies: true,
+        }),
+      ],
       formatError: (error) => {
         logger.error('GraphQL Error:', error);
         return error;
