@@ -38,6 +38,17 @@ async function startServer() {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
   });
 
+  // Root endpoint
+  app.get('/', (req, res) => {
+    res.json({ 
+      message: 'GraphQL API Server',
+      endpoints: {
+        health: '/health',
+        graphql: '/graphql'
+      }
+    });
+  });
+
   // GraphQL endpoint
   app.use(
     '/graphql',
