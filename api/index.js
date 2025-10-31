@@ -21,7 +21,7 @@ app.use(helmet({
 app.use(cors());
 app.use(express.json());
 
-// Cache Apollo Server instance
+// Cache Apollo Server instance 
 let apolloServer = null;
 let isServerInitialized = false;
 
@@ -52,7 +52,7 @@ async function initializeApolloServer() {
     });
 
     await apolloServer.start();
-    isServerInitialized = true;
+    isServerInitialized = true;-
     
     logger.info('Apollo Server initialized successfully');
     return apolloServer;
@@ -66,7 +66,7 @@ async function initializeApolloServer() {
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', timestamp: new Date().toISOString()});
 });
 
 // Root endpoint
